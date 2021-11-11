@@ -11,7 +11,7 @@
 <link th:href="@{/css/main.css}" rel="stylesheet" />
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css" />
-<title>CLEAN EXPERT | LISTADO DE RESERVAS</title>
+<title>MY TRANSPORT | LISTADO DE RESERVAS</title>
 </head>
 <body class="bg-light">
 	<div class="page-flex">
@@ -57,8 +57,7 @@
 												<th>Hora</th>
 												<th>Direccion</th>
 												<th>Distrito</th>
-												<th>Cliente</th>
-												<th>Precio</th>
+												<th>Cliente</th>		
 												<th>Acciones</th>
 											</tr>
 										</thead>
@@ -71,8 +70,7 @@
 												<td class="align-middle" th:text="${res.vehicle.address}"></td>
 												<td class="align-middle"
 													th:text="${res.vehicle.district.name}"></td>
-												<td class="align-middle" th:text="${res.vehicle.client.name}"></td>
-												<td class="align-middle" th:text="${res.price}"></td>
+												<td class="align-middle" th:text="${res.vehicle.client.name}"></td>												
 												<td class="align-middle">
 												<a title="Ver"class="btn btn-primary rounded-circle" th:href="@{'/service/view/'}+${res.id_reservation}"><i
 														class="bi bi-eye-fill"> </i></a></td>

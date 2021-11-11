@@ -23,8 +23,8 @@ import pe.edu.upc.spring.service.iVehicleService;
 import pe.edu.upc.spring.utils.Sesion;
 
 @Controller
-@RequestMapping("/property")
-public class PropertyController {
+@RequestMapping("/vehicle")
+public class VehicleController {
 
 	@Autowired
 	private Sesion sesion;
@@ -36,70 +36,70 @@ public class PropertyController {
 	private iDistrictService dService;
 	
 	@RequestMapping("/list")
-	public String goPageListProperties(Map<String, Object> model) {
-		model.put("listProp", pService.findByClientId(sesion.getClient().getId_client()));
-		return "/property/listProperties";
+	public String goPageListVehicles(Map<String, Object> model) {
+		model.put("listVehi", pService.findByClientId(sesion.getClient().getId_client()));
+		return "/vehicle/listVehicles";
 	}
 	
 	@RequestMapping("/register")
 	public String goPageRegister(Model model) {
-		model.addAttribute("property", new Vehicle());
-		model.addAttribute("district", new District());
+		model.addAttribute("vehicle", new Vehicle());
+		model.addAttribute("location", new District());
 		model.addAttribute("listDistrict", dService.listDistrict());
 		
-		return "/property/Property";
+		return "/vehicle/Vehicle";
 	}
 	
-	@RequestMapping("/registerProperty")
-	public String register(@ModelAttribute Vehicle objProperty, BindingResult binRes, Model model)
+	@RequestMapping("/registerVehicle")
+	public String register(@ModelAttribute Vehicle objVehicle, BindingResult binRes, Model model)
 			throws ParseException
 	{
-		if (objProperty.getClient()==null) {
-			objProperty.setClient(sesion.getClient());	
+		if (objVehicle.getClient()==null) {
+			objVehicle.setClient(sesion.getClient());	
 		}
 		
 		if (binRes.hasErrors())
-			return "/property/Property";
+			return "/vehicle/Vehicle";
 		else {
-			boolean flag = pService.createProperty(objProperty);
+			boolean flag = pService.createVehicle(objVehicle);
 			if (flag)
-				return "redirect:/property/list";
+				return "redirect:/vehicle/list";
 			else {
 				model.addAttribute("mensaje", "Ocurrio un error");
-				return "redirect:/property/register";
+				return "redirect:/vehicle/register";
 			}
 		}
 	}
 	
 	@RequestMapping("/delete")
-	public String deleteProperty(Map<String, Object> model, @RequestParam(value="id") Integer id) {
+	public String deleteVehicle(Map<String, Object> model, @RequestParam(value="id") Integer id) {
 		try {
 			if (id!=null && id>0) {
-				pService.deleteProperty(id);
-				model.put("listProp", pService.findByClientId(sesion.getClient().getId_client()));
+				pService.deleteVehicle(id);
+				model.put("listVehi", pService.findByClientId(sesion.getClient().getId_client()));
 			}
 		}
 		catch(Exception ex) {
-			model.put("mensaje","La propiedad no se puede eliminar, esta siendo utilizada en una reserva");
-			model.put("listProp", pService.findByClientId(sesion.getClient().getId_client()));
+			model.put("mensaje","El vehiculo no se puede eliminar, esta siendo utilizada en una reserva");
+			model.put("listVehi", pService.findByClientId(sesion.getClient().getId_client()));
 		}
-		return "property/listProperties";
+		return "vehicle/listVehicles";
 	}
 
 	@RequestMapping("/edit/{id}")
-	public String editProperty(@PathVariable int id, Model model, RedirectAttributes objRedir)
+	public String editVehicle(@PathVariable int id, Model model, RedirectAttributes objRedir)
 		throws ParseException 
 	{
-		Optional<Vehicle> objProperty = pService.findById(id);
-		if (objProperty == null) {
+		Optional<Vehicle> objVehicle = pService.findById(id);
+		if (objVehicle == null) {
 			objRedir.addFlashAttribute("mensaje", "Ocurrio un error");
-			return "redirect:/property/list";
+			return "redirect:/vehicle/list";
 		}
 		else {
 			model.addAttribute("listDistrict", dService.listDistrict());
-			if (objProperty.isPresent())
-				objProperty.ifPresent(p -> model.addAttribute("property", p));
-			return "property/propertyUpdate";
+			if (objVehicle.isPresent())
+				objVehicle.ifPresent(p -> model.addAttribute("vehicle", p));
+			return "vehicle/vehicleUpdate";
 		}
 	}
 }

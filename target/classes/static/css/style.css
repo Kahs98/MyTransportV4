@@ -36,7 +36,7 @@ main {
 }
 
 body {
-    background-color: #f0f2fa;
+    background-color: rgb(128, 255, 128);
 }
 
 
@@ -94,7 +94,7 @@ body {
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
     justify-content: space-between;
-    background-color: #45C3D3 !important;
+    background-color: rgb(0, 128, 64) !important;
     width: 253px;
     padding: 20px 15px 37px 20px;
     min-height: 100vh;
@@ -444,7 +444,7 @@ body {
     font-weight: 500;
     font-size: 12px;
     line-height: 15px;
-    color: #5887ff;
+    color: rgb(0, 255, 0);
 }
 
 .main-nav .nav-user-wrapper {

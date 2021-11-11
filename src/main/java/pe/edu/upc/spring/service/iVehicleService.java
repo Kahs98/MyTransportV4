@@ -7,8 +7,8 @@ import pe.edu.upc.spring.model.Vehicle;
 
 public interface iVehicleService {
 	
-	public boolean createProperty(Vehicle vehicle);
-	public void deleteProperty(int idVehicle);
+	public boolean createVehicle(Vehicle vehicle);
+	public void deleteVehicle(int idVehicle);
 	public Optional<Vehicle> findById(int idVehicle);
 	public List<Vehicle> findByClientId (int idClient);
 }

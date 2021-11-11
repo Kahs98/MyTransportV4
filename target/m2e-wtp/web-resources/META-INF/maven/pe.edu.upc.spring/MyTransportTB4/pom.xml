@@ -9,11 +9,11 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>pe.edu.upc.spring</groupId>
-	<artifactId>Clean_Expert</artifactId>
+	<artifactId>MyTransportTB4</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>Clean_Expert</name>
-	<description>Proyecto Web Clean Expert</description>
+	<name>MyTransportTB4</name>
+	<description>Proyecto Web MyTransportTB4</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>

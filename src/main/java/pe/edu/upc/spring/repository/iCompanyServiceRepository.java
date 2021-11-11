@@ -16,6 +16,6 @@ public interface iCompanyServiceRepository extends JpaRepository<CompanyService,
 	@Query("from CompanyService c where c.name like %:nameCompanyService%")
 	List<CompanyService> searchByName(@Param("nameCompanyService") String nameCompanyService);
 	
-	@Query("from CleaningStaff c where c.user.id_user=:idUser")
+	@Query("from CompanyService c where c.user.id_user=:idUser")
 	Optional<CompanyService> findByUserId(int idUser);
 }

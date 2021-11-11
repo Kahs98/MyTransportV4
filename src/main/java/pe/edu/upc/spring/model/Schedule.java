@@ -43,7 +43,7 @@ public class Schedule implements Serializable {
 	private boolean sunday;
 	
 	@OneToOne
-	@JoinColumn(name="id_company_serivce", nullable=false)
+	@JoinColumn(name="id_company_service", nullable=false)
 	private CompanyService company_service;
 	
 

@@ -19,7 +19,7 @@ public class VehicleServiceImpl implements iVehicleService{
 	
 	@Override
 	@Transactional
-	public boolean createProperty(Vehicle vehicle) {
+	public boolean createVehicle(Vehicle vehicle) {
 		Vehicle objVehicle = dVehicle.save(vehicle);
 		if(objVehicle==null) {
 			return false;
@@ -30,7 +30,7 @@ public class VehicleServiceImpl implements iVehicleService{
 
 	@Override
 	@Transactional
-	public void deleteProperty(int idVehicle) {
+	public void deleteVehicle(int idVehicle) {
 		dVehicle.deleteById(idVehicle);
 	}
 

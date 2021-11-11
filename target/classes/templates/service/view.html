@@ -86,39 +86,11 @@
 													th:text="*{property.client.name} + ' ' + *{property.client.lastname}"></span>
 											</div>
 										</div>
-										<div class="mb-4 mt-4">
-											<h4 class="mb-1 text-primary">Opciones</h4>
-										</div>
-										<div class="mb-4 row">
-											<div class="col-12 mb-3">
-												<label class="d-block">Kit de limpieza</label> <span
-													th:text="*{extra_cleaning_kit} ? 'Sí' : 'No'"
-													class="fw-bold d-block"></span>
-											</div>
-										</div>
-
+									
 									</div>
 								</div>
 							</div>
 
-							<div class="col-xl-4 col-lg-4 col-md-12 col-12">
-								<div class="card rounded-3 p-4">
-									<!-- card body -->
-									<div class="card-body">
-										<div class="mb-4">
-											<h4 class="mb-1 text-primary">Resultados del servicio</h4>
-										</div>
-										<div class="mb-3">
-											<label class="d-block">Horas promedio</label> <span
-												class="fw-bold" th:text="*{duration} + ' Hr(s)'"></span>
-										</div>
-										<div class="mb-3">
-											<label class="d-block">Monto total a pagar</label> <span
-												class="fw-bold" th:text="'S/. '+*{price}"></span>
-										</div>
-									</div>
-								</div>
-							</div>
 						</div>
 					</form>
 				</div>

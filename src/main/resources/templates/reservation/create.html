@@ -11,7 +11,7 @@
 <link th:href="@{/css/main.css}" rel="stylesheet" />
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css" />
-<title>CLEAN EXPERT</title>
+<title>MY TRANSPORT</title>
 </head>
 <script type="text/javascript">
 window.onload = function() { 
@@ -25,7 +25,7 @@ window.onload = function() {
 
 		});
 
-	document.getElementById("personal").addEventListener("click", function() {
+	document.getElementById("company").addEventListener("click", function() {
 
 		var data = document.getElementById('date').value;
 		var time = document.getElementById('start_time').value;
@@ -53,18 +53,6 @@ window.onload = function() {
 		});	
 };
 	
-function calculate(s) {
-	
-	var data = document.getElementById("Dormitorio").getAttribute('data-post');
-	console.log(typeof data)
-	
-	$.ajax({
-		url : "/reservation/calculate",
-		type : "post",
-	    data : JSON.stringify(s),
-	});
-}
-
 
 </script>
 <body class="bg-light">
@@ -109,23 +97,9 @@ function calculate(s) {
 								<div class="card rounded-3">
 									<!-- card body -->
 									<div class="card-body">
-										<div class="mb-4">
-											<h4 class="mb-1 text-primary">Habitaciones</h4>
-										</div>
+									
 										<!-- row -->
-										<div class="row">
-											<div class="col-6 mb-3"
-												th:each="detail,rowStat : *{listDetails}">
-												<label for="bath" class="col-form-label form-label"
-													th:text="*{listDetails[__${rowStat.index}__].room.name}"></label>
-												<input type="number" class="form-control"
-													th:field="*{listDetails[__${rowStat.index}__].quantity}"
-													th:id="*{listDetails[__${rowStat.index}__].room.name}"
-													th:placeholder="ss"></input> <input type="hidden"
-													th:field="*{listDetails[__${rowStat.index}__].room.name}">
-											</div>
-										</div>
-
+							
 										<div class="mb-4 mt-4">
 											<h4 class="mb-1 text-primary">Horario y lugar</h4>
 										</div>
@@ -161,20 +135,18 @@ function calculate(s) {
 
 										<!-- row -->
 										<div class="mb-4 mt-4">
-											<h4 class="mb-1 text-primary">Selecciona tu Clean Expert</h4>
+											<h4 class="mb-1 text-primary">Selecciona tu Servicio</h4>
 										</div>
 										<div class="mb-4 mt-4">
 											<button type="button" id="personal"
-												class="btn btn-primary px-4">Listar personal
-												disponible</button>
+												class="btn btn-primary px-4">Listar servicios</button>
 
 
 										</div>
 										<div class="mb-4 row">
 											<label for="location"
 												class="col-sm-4 col-form-label
-                                            form-label">Personal
-												de limpieza</label>
+                                            form-label">Empresa de Servicio</label>
 											<div class="col-md-8 col-12">
 												<select class="form-select" id="select-personal"
 													th:field="*{companyService.id_company_service}">
@@ -185,35 +157,19 @@ function calculate(s) {
 										<div class="mb-4 mt-4">
 											<h4 class="mb-1 text-primary">Preferencias</h4>
 										</div>
-										<div class="mb-4 row">
-											<div class="col-md-4 col-12">
-												<label class="mb-0 form-label">Selecciona tus
-													preferencias</label>
-											</div>
-											<div class="col-md-8 col-12">
-												<div class="form-check  mb-2">
-													<input type="checkbox" class="form-check-input"
-														id="customChecktellMe"> <label
-														class="form-check-label" th:field="*{extra_cleaning_kit}"
-														for="customChecktellMe">Agregar kit de limpieza</label>
-												</div>
-											</div>
-
-										</div>
-
-
+									
 										<div class="mt-2">
 											<button type="reset" class="btn btn-secondary px-4 me-2">Cancelar</button>
-											<button type="submit" class="btn btn-primary px-4">Pagar</button>
+											<button type="submit" class="btn btn-primary px-4">Reservar</button>
 										</div>
 
 									</div>
 								</div>
 
 							</div>
-							<div class="col-xl-4 col-lg-4 col-md-12 col-12">
+							<!--<div class="col-xl-4 col-lg-4 col-md-12 col-12">
 								<div class="card rounded-3">
-									<!-- card body -->
+									<!-- card body 
 									<div class="card-body">
 										<div class="mb-4">
 											<h4 class="mb-1 text-primary">Resultados del servicio</h4>
@@ -230,7 +186,9 @@ function calculate(s) {
 									</div>
 								</div>
 
-							</div>
+							</div> -->
+							
+						
 						</div>
 					</form>
 				</div>

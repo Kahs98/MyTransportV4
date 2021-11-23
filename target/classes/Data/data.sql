@@ -13,6 +13,7 @@ INSERT INTO administrador (apellidos,email,nombre,id_usuario) VALUES ('Artica Hu
 INSERT INTO cliente (apellidos,celular,email,nombre,id_usuario) VALUES ('Rondan ',978563412,'rondan@gmail.com','Ruben',1);
 INSERT INTO cliente (apellidos,celular,email,nombre,id_usuario) VALUES ('Quichca',975372412,'quichca@gmail.com','Luis',2);
 
+INSERT INTO empresa_servicio (apellidos,celular,nombre_empresa,email,nombre, habilitado,id_usuario) VALUES ('Leon Diaz',918173446,'Servicio Recarga Jorgito','joss@gmail.com','Joselin',true,4);
 INSERT INTO empresa_servicio (apellidos,celular,nombre_empresa,email,nombre, habilitado,id_usuario) VALUES ('Espinoza Arias',918173446,'Servicio MaxPower','angie@gmail.com','Angie',true,4);
 INSERT INTO empresa_servicio (apellidos,celular,nombre_empresa,email,nombre, habilitado,id_usuario) VALUES ('Cantoro Garcia',912433412,'Servicio LugarLibre','miguel@gmail.com','Miguel',true,3);
 
@@ -64,6 +65,7 @@ INSERT INTO distrito (nombre) VALUES ('Santiago de Surco');
 INSERT INTO distrito (nombre) VALUES ('Surquillo');
 INSERT INTO distrito (nombre) VALUES ('Villa El Salvador');
 INSERT INTO distrito (nombre) VALUES ('Villa Maria del Triunfo');
+
 
 INSERT INTO vehiculo (nombre,id_cliente,id_distrito) VALUES ('A2b',2,3);
 INSERT INTO vehiculo (nombre,id_cliente,id_distrito) VALUES ('Ave Hybrid Bikes',1,5);

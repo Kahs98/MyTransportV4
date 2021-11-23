@@ -29,7 +29,6 @@ import java.time.format.DateTimeFormatter;
 
 import pe.edu.upc.spring.model.CompanyService;
 import pe.edu.upc.spring.model.DetailReservation;
-import pe.edu.upc.spring.model.Parameter;
 import pe.edu.upc.spring.model.Reservation;
 import pe.edu.upc.spring.model.Room;
 import pe.edu.upc.spring.model.Schedule;
@@ -38,7 +37,7 @@ import pe.edu.upc.spring.service.iDetailReservationService;
 import pe.edu.upc.spring.service.iRoomService;
 import pe.edu.upc.spring.service.iVehicleService;
 import pe.edu.upc.spring.service.iScheduleService;
-import pe.edu.upc.spring.service.iParameterService;
+
 
 @Controller
 @RequestMapping("/reservation")
@@ -62,10 +61,9 @@ public class ReservationController {
 	@Autowired
 	private iRoomService roService;
 
-	@Autowired
-	private iParameterService paService;
+	
 
-	List<Parameter> listParameters = new ArrayList<Parameter>();
+	//List<Parameter> listParameters = new ArrayList<Parameter>();
 	List<DetailReservation> listDetailReservation = new ArrayList<DetailReservation>();
 	List<CompanyService> listCompanyService= new ArrayList<CompanyService>();
 
@@ -109,7 +107,7 @@ public class ReservationController {
 
 		model.addAttribute("listCompanyService", listCompanyService);
 		model.addAttribute("listVehicle", pService.findByClientId(sesion.getClient().getId_client()));
-		listParameters = paService.list();
+		//listParameters = paService.list();
 		
 		this.reservation = reservation;
 		model.addAttribute("reservation", reservation);

@@ -10,7 +10,7 @@
 	<link th:href="@{/css/style.css}" rel="stylesheet" />
 	<link th:href="@{/css/main.css}" rel="stylesheet" />
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css" />
-	<title>CLEAN EXPERT</title>
+	<title>MY TRASNPORT</title>
 </head>
 <body class="bg-light">
 	<div class="page-flex">
@@ -65,13 +65,13 @@
 											</div>
 										</div>
 										<div class="mb-4 row">
-											<label for="address"
+											<label for="nameVehicle"
 												class="col-sm-4 col-form-label
-	                                            form-label">Direccion</label>
+	                                            form-label">Vehiculo</label>
 	                                        <input id="id" placeholder="Ingrese" th:field="*{id_vehicle}" type="hidden"/>
 											<div class="col-md-8 col-12">
-												<input type="text" class="form-control" th:field="*{address}" 
-												placeholder="Ingresa una direccion" id="address" required="required">
+												<input type="text" class="form-control" th:field="*{nameVehicle}"
+												placeholder="Ingresa un vehiculo" id="nameVehicle">
 											</div>
 										</div>
 										<div class="mt-2">

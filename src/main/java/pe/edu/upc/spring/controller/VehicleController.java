@@ -58,8 +58,9 @@ public class VehicleController {
 			objVehicle.setClient(sesion.getClient());	
 		}
 		
-		if (binRes.hasErrors())
-			return "/vehicle/Vehicle";
+		if (binRes.hasErrors()) {
+			model.addAttribute("listDistrict", dService.listDistrict());
+			return "/vehicle/Vehicle";}
 		else {
 			boolean flag = pService.createVehicle(objVehicle);
 			if (flag)

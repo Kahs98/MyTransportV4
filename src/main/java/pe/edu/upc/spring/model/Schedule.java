@@ -12,7 +12,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Horario")
+@Table(name="horario")
 public class Schedule implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -45,12 +45,11 @@ public class Schedule implements Serializable {
 	@OneToOne
 	@JoinColumn(name="id_company_service", nullable=false)
 	private CompanyService company_service;
-	
 
 	public Schedule() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
-
 
 	public Schedule(int id_schedule, boolean monday, boolean tuesday, boolean wednesday, boolean thursday,
 			boolean friday, boolean saturday, boolean sunday, CompanyService company_service) {
@@ -66,98 +65,80 @@ public class Schedule implements Serializable {
 		this.company_service = company_service;
 	}
 
-
 	public int getId_schedule() {
 		return id_schedule;
 	}
-
 
 	public void setId_schedule(int id_schedule) {
 		this.id_schedule = id_schedule;
 	}
 
-
 	public boolean isMonday() {
 		return monday;
 	}
-
 
 	public void setMonday(boolean monday) {
 		this.monday = monday;
 	}
 
-
 	public boolean isTuesday() {
 		return tuesday;
 	}
-
 
 	public void setTuesday(boolean tuesday) {
 		this.tuesday = tuesday;
 	}
 
-
 	public boolean isWednesday() {
 		return wednesday;
 	}
-
 
 	public void setWednesday(boolean wednesday) {
 		this.wednesday = wednesday;
 	}
 
-
 	public boolean isThursday() {
 		return thursday;
 	}
-
 
 	public void setThursday(boolean thursday) {
 		this.thursday = thursday;
 	}
 
-
 	public boolean isFriday() {
 		return friday;
 	}
-
 
 	public void setFriday(boolean friday) {
 		this.friday = friday;
 	}
 
-
 	public boolean isSaturday() {
 		return saturday;
 	}
-
 
 	public void setSaturday(boolean saturday) {
 		this.saturday = saturday;
 	}
 
-
 	public boolean isSunday() {
 		return sunday;
 	}
-
 
 	public void setSunday(boolean sunday) {
 		this.sunday = sunday;
 	}
 
-
 	public CompanyService getCompany_service() {
 		return company_service;
 	}
 
-
 	public void setCompany_service(CompanyService company_service) {
 		this.company_service = company_service;
 	}
-
-
 	
 
+	
+	
 	
 }

@@ -50,7 +50,7 @@ window.onload = function() {
 					for (var i = 0; i<= result.length-1; i++){
 					    var opt = document.createElement('option');		    
 					    opt.value = result[i].id_company_service;
-					    opt.innerHTML = result[i].name;
+					    opt.innerHTML = result[i].nameCompany;
 					    select.appendChild(opt);
 					}
 				}				
@@ -158,18 +158,7 @@ window.onload = function() {
 												</select>
 											</div>
 										</div>
-										<label for="location"
-												class="col-sm-4 col-form-label
-	                                            form-label">Empresas de Servicios</label>
-											<div class="col-md-8 col-12">
-												<select class="form-control"
-													th:field="*{companyService.id_company_service}">
-													<option value="0">Selecciona una empresa de servicio</option>
-													<option th:each="cps: ${listCompanyService}"
-														th:value="${cps.id_company_service}" th:text="${cps.nameCompany}"
-														th:selected="(${cps.id_company_service}==*{companyService.id_company_service})"></option>
-												</select>
-											</div>
+										
 									
 										<div class="mt-2">
 											<button type="reset" class="btn btn-secondary px-4 me-2">Cancelar</button>

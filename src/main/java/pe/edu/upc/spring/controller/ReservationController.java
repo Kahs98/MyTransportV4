@@ -114,60 +114,9 @@ public class ReservationController {
 		return "/reservation/create";
 	}
 
-	@RequestMapping("/calculate")
-	public String calculate(@ModelAttribute Reservation reservation, BindingResult binRes, Model model) throws ParseException {
-			System.out.println("INGRESA");
-			System.out.println("INGRESA");
 
-			/*System.out.println(reservation.getListDetails());
-			System.out.println(reservation.getClass().getName());
-
-			int count= 23;
-
-			for (int i = 0; i < reservation.getListDetails().size(); i++) {
-				count = count +  reservation.getListDetails().get(i).getQuantity();
-			}
-			
-			this.reservation = reservation;
-			
-			reservation.setPrice(count);
-			model.addAttribute("reservation", reservation);
-			
-			
-			System.out.println(count);
-			*/
-			return "reservation";
-		
-	}
 
 	
-	@RequestMapping("/goPayment")
-	public String goPagePayment(@ModelAttribute Reservation objReservation, BindingResult binRes, Model model) throws ParseException {
-		if (binRes.hasErrors()) {
-			System.out.println(objReservation.getStart_time());
-
-			System.out.println(binRes.getAllErrors());
-
-			return "/reservation/create";
-		} else {
-			System.out.println(objReservation.getStart_time());
-
-		this.reservation = objReservation;
-		model.addAttribute("reservation", objReservation);
-
-		return "/reservation/payment";
-
-	/*	if (binRes.hasErrors()) {
-			model.addAttribute("listDetailsReservation", roService.listRooms());
-			model.addAttribute("listDetailsReservation", pService.findByClientId(sesion.getClient().getId_client()));
-			return "reservation";
-		} else {
-			this.reservation = objReservation;
-			this.listDetailReservation = listDetailsReservation;
-			return "/reservation/payment";
-		}*/
-		}
-	}
 
 	@RequestMapping("/register")
 	public String register(Model model, BindingResult binRes) throws ParseException {
@@ -186,7 +135,7 @@ public class ReservationController {
 				return "redirect:/reservation/list";
 			else {
 				model.addAttribute("mensaje", "Ocurrio un error");
-				return "redirect:/reservation/goPayment";
+				return "redirect:/reservation/list";
 			}
 		}
 	}

@@ -85,11 +85,11 @@ public class AdminController {
 			user.setType_user(new TypeUser(3, "Administrador"));
 			user.setUsername(user.getUsername().trim());
 			user.setPassword(user.getPassword().trim());
-			Optional<UserModel> userRepeat = uService.findByUsernameRepeated(user.getUsername());
-			if (userRepeat.isPresent()) {
+			UserModel userRepeat = uService.findByUsernameRepeated(user.getUsername());
+			if (userRepeat != null) {
 				model.addAttribute("error",
 						"Error: El nombre de usuario o contraseña ya existe. Por favor ingrese otros valores.");
-				return "/adminLists/registerAdmin";
+				return "adminLists/registerAdmin";
 			}
 			boolean flag = uService.createUser(user);
 			if(flag) {

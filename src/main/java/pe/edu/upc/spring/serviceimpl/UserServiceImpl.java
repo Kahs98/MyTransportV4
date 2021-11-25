@@ -1,7 +1,5 @@
 package pe.edu.upc.spring.serviceimpl;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,10 +26,10 @@ public class UserServiceImpl implements iUserService {
 	}
 
 	@Override
-	public Optional<UserModel> findByUsernameRepeated(String username) {
-		System.out.println(username);
+	public UserModel findByUsernameRepeated(String username) {
 		return dUser.findByUsernameRepeated(username);
 	}
 
 	
 }
+

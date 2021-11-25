@@ -1,7 +1,6 @@
 package pe.edu.upc.spring.controller;
 
-import java.util.Optional;
-
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,8 +31,6 @@ public class CompanyServiceController {
 	@Autowired
 	private iCompanyServiceService csService;
 	
-
-	
 	@Autowired
 	private iUserService uService;
 	
@@ -53,11 +50,11 @@ public class CompanyServiceController {
 			user.setType_user(new TypeUser(2, "ROLE_Empresa_de_Servicio"));
 			user.setUsername(user.getUsername().trim());
 			user.setPassword(user.getPassword().trim());
-			Optional<UserModel> userRepeat = uService.findByUsernameRepeated(user.getUsername());
-			if (userRepeat.isPresent()) {
+			UserModel userRepeat = uService.findByUsernameRepeated(user.getUsername());
+			if (userRepeat != null) {
 				model.addAttribute("error",
 						"Error: El nombre de usuario o contraseña ya existe. Por favor ingrese otros valores.");
-				return "/register/registerCompany";
+				return "register/registerCompany";
 			}
 			boolean flag = uService.createUser(user);
 			if (flag) {
@@ -86,12 +83,14 @@ public class CompanyServiceController {
 	}
 	@Secured("ROLE_Empresa_de_Servicio")
 	@RequestMapping("/editCompany")
-	public String editClient(@ModelAttribute (value="company") CompanyService objCompanyService, BindingResult binRes, Model model)throws ParseException{
-		if(binRes.hasErrors()) {
-			return "redirect:/company/edit";
+	public String editClient(@Valid @ModelAttribute(value = "company") CompanyService objCompanyService,
+			BindingResult binRes, Model model, HttpSession httpSession) throws ParseException {
+		if (binRes.hasErrors()) {
+			return "perfilCompany/update";
 		} else {
-			boolean flag = csService.createCompanyService(objCompanyService);
-			if(flag) {
+			boolean flag = csService.updateCompanyService(objCompanyService);
+			if (flag) {
+				httpSession.setAttribute("nameUser", objCompanyService.getName() + " " + objCompanyService.getLastname());
 				sesion.setCompanyService(objCompanyService);
 				return "redirect:/company/view";
 			} else {

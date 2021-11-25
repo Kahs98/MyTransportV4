@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,10 +18,13 @@ public class ClientServiceImpl implements iClientService {
 	@Autowired
 	private iClientRepository dClient;
 	
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
+
 	@Override
 	@Transactional
 	public boolean createClient(Client client) {
-		System.out.println(client.getId_client());
+		client.getUser().setPassword(passwordEncoder.encode(client.getUser().getPassword()));
 		Client objClient = dClient.save(client);
 		if(objClient==null) {
 			return false;
@@ -28,7 +32,18 @@ public class ClientServiceImpl implements iClientService {
 			return true;
 		}
 	}
-
+	
+	@Override
+	@Transactional
+	public boolean updateClient(Client client) {
+		Client objClient = dClient.save(client);
+		if(objClient==null) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
 	@Override
 	@Transactional
 	public void deleteClient(int idClient) {
@@ -56,5 +71,6 @@ public class ClientServiceImpl implements iClientService {
 	public Optional<Client> findByUserId(int idUser) {
 		return dClient.findByUserId(idUser);
 	}
+	
 	
 }

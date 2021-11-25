@@ -17,10 +17,12 @@ import com.sun.el.parser.ParseException;
 import pe.edu.upc.spring.model.Admin;
 import pe.edu.upc.spring.model.CompanyService;
 import pe.edu.upc.spring.model.TypeUser;
-import pe.edu.upc.spring.model.User;
+import pe.edu.upc.spring.model.UserModel;
 import pe.edu.upc.spring.service.iAdminService;
 import pe.edu.upc.spring.service.iCompanyServiceService;
 import pe.edu.upc.spring.service.iUserService;
+
+
 
 @Controller
 @RequestMapping("/admin")
@@ -34,6 +36,7 @@ public class AdminController {
 	
 	@Autowired
 	private iCompanyServiceService csService;
+	
 	
 	@RequestMapping("/register")
 	public String goPageRegister(Model model) {
@@ -74,14 +77,20 @@ public class AdminController {
 	}
 	
 	@RequestMapping("/registerAdmin")
-	public String registerClient(@ModelAttribute Admin objAdmin, BindingResult binRes, Model model)throws ParseException{
+	public String registerAdmin(@ModelAttribute Admin objAdmin, BindingResult binRes, Model model)throws ParseException{
 		if (binRes.hasErrors()) {
 			return "registerAdmin";
 		} else {
-			User user = objAdmin.getUser();
+			UserModel user = objAdmin.getUser();
 			user.setType_user(new TypeUser(3, "Administrador"));
 			user.setUsername(user.getUsername().trim());
 			user.setPassword(user.getPassword().trim());
+			Optional<UserModel> userRepeat = uService.findByUsernameRepeated(user.getUsername());
+			if (userRepeat.isPresent()) {
+				model.addAttribute("error",
+						"Error: El nombre de usuario o contraseña ya existe. Por favor ingrese otros valores.");
+				return "/adminLists/registerAdmin";
+			}
 			boolean flag = uService.createUser(user);
 			if(flag) {
 				objAdmin.setUser(user);

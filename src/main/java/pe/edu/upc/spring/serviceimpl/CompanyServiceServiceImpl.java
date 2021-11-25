@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,10 +17,14 @@ public class CompanyServiceServiceImpl implements iCompanyServiceService {
 	
 	@Autowired
 	private iCompanyServiceRepository dCompanyService;
-
+	
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
+	
 	@Override
 	@Transactional
 	public boolean createCompanyService(CompanyService companyService) {
+		companyService.getUser().setPassword(passwordEncoder.encode(companyService.getUser().getPassword()));
 		CompanyService objCompanyService = dCompanyService.save(companyService);
 		if(objCompanyService==null) {
 			return false;
@@ -27,7 +32,19 @@ public class CompanyServiceServiceImpl implements iCompanyServiceService {
 			return true;
 		}
 	}
-
+	
+	@Override
+	@Transactional
+	public boolean updateCompanyService(CompanyService companyService) {
+		CompanyService objCompanyService = dCompanyService.save(companyService);
+		if(objCompanyService==null) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
+	
 	@Override
 	@Transactional
 	public void deleteCompanyService(int idCompanyService) {

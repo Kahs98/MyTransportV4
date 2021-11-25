@@ -73,6 +73,7 @@ public class UserModel implements Serializable {
 	public void setType_user(TypeUser type_user) {
 		this.type_user = type_user;
 	}
+
 	
 	
 	

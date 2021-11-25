@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import pe.edu.upc.spring.model.User;
+import pe.edu.upc.spring.model.UserModel;
 import pe.edu.upc.spring.repository.iUserRepository;
 import pe.edu.upc.spring.service.iUserService;
 
@@ -18,8 +18,8 @@ public class UserServiceImpl implements iUserService {
 
 	@Override
 	@Transactional
-	public boolean createUser(User user) {
-		User objUser = dUser.save(user);
+	public boolean createUser(UserModel user) {
+		UserModel objUser = dUser.save(user);
 		if(objUser==null) {
 			return false;
 		} else {
@@ -28,8 +28,10 @@ public class UserServiceImpl implements iUserService {
 	}
 
 	@Override
-	public Optional<User> findByUsernameAndPassword(String username, String password) {
-		return dUser.findByUsernameAndPassword(username, password);
+	public Optional<UserModel> findByUsernameRepeated(String username) {
+		System.out.println(username);
+		return dUser.findByUsernameRepeated(username);
 	}
+
 	
 }

@@ -1,9 +1,9 @@
 package pe.edu.upc.spring.controller;
 
 import java.util.ArrayList;
-import java.util.Date;
+
 import java.util.List;
-import java.util.Locale;
+
 import java.util.Map;
 import java.util.Optional;
 
@@ -11,32 +11,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.google.gson.Gson;
+
 import com.sun.el.parser.ParseException;
 
 import pe.edu.upc.spring.utils.Sesion;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+
 
 import pe.edu.upc.spring.model.CompanyService;
 import pe.edu.upc.spring.model.DetailReservation;
 import pe.edu.upc.spring.model.Reservation;
 import pe.edu.upc.spring.model.Room;
-import pe.edu.upc.spring.model.Schedule;
 import pe.edu.upc.spring.service.iReservationService;
 import pe.edu.upc.spring.service.iDetailReservationService;
 import pe.edu.upc.spring.service.iRoomService;
 import pe.edu.upc.spring.service.iVehicleService;
-import pe.edu.upc.spring.service.iScheduleService;
+
 
 
 @Controller
@@ -55,8 +50,7 @@ public class ReservationController {
 	@Autowired
 	private iDetailReservationService dService;
 
-	@Autowired
-	private iScheduleService sService;
+
 
 	@Autowired
 	private iRoomService roService;
@@ -140,50 +134,5 @@ public class ReservationController {
 		}
 	}
 
-	@ResponseBody
-	@RequestMapping("/listCompanyService/{date}")
-	public String listCompany(@PathVariable String date, Model model, RedirectAttributes objRedir,
-			Map<String, Object> modelList) throws ParseException, java.text.ParseException {
-		
-			listCompanyService.clear();
-			List<Schedule> listSchedule = new ArrayList<Schedule>();
-	
-			LocalDate localdate = LocalDate.parse((CharSequence) date);
-			Locale spanishLocale = new Locale("es", "ES");
-			String dateInSpanish = localdate.format(DateTimeFormatter.ofPattern("EEEE", spanishLocale));
-
-			listSchedule = sService.findHorarioByDate(dateInSpanish);
-	
-			List<Reservation> filteredReservations = new ArrayList<Reservation>();
-			
-			DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-			Date date_format = format.parse(date);
-			filteredReservations = rService.listByDate(date_format);
-	
-			List<CompanyService> companyServicePerSchedule = new ArrayList<CompanyService>();
-	
-			for (int i = 0; i < listSchedule.size(); i++) {
-
-				if(listSchedule.get(i).getCompany_service().isEnabled()) {
-					companyServicePerSchedule.add(listSchedule.get(i).getCompany_service());
-				}
-			}
-	
-			for (int i = 0; i < companyServicePerSchedule.size(); i++) {
-				boolean notFinded = true;
-				for (int j = 0; j < filteredReservations.size(); j++) {
-					if (filteredReservations.get(i).getCompanyService().getId_company_service() == companyServicePerSchedule
-							.get(j).getId_company_service()) {
-						notFinded = false;
-					}
-				}
-				if (notFinded) {
-					listCompanyService.add(companyServicePerSchedule.get(i));
-				}
-			}
-
-			Gson gson = new Gson();
-			return gson.toJson(listCompanyService);
-	}
 
 }

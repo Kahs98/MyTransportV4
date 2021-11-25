@@ -19,4 +19,5 @@ public interface iClientRepository extends JpaRepository<Client, Integer> {
 	@Query("from Client c where c.user.id_user=:idUser")
 	Optional<Client> findByUserId(int idUser);
 	
+	
 }

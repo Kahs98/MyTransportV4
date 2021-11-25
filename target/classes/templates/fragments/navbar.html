@@ -23,8 +23,13 @@
 						th:src="@{/img/user1.png}" height='30'></img>
 					</span>
 					<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-						<li><a class="dropdown-item" href="#">Mi perfil</a></li>
-						<li><a class="dropdown-item" th:href="@{/user/login}">Cerrar sesión</a></li>
+						<li>	
+							<form  th:action="@{/logout}" method="post">
+								<button class="dropdown-item" type="submit" >
+									<a class="dropdown-item">Cerrar sesión</a>
+								</button>
+							</form>
+						</li>
 					</ul>
 				</div>
 
